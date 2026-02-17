@@ -751,11 +751,7 @@
         <div class="design-selection" id="designSelection">
             <div class="design-title" id="designTitle">اختر تصميم التهنئة</div>
             <div class="design-options">
-                <div class="design-option" data-design="landscape">
-                    <img src="designs/رمضان كريم الدمعان copy.png" alt="تصميم عرضي">
-                    <div class="overlay">تصميم عرضي</div>
-                </div>
-                <div class="design-option" data-design="story">
+                <div class="design-option selected" data-design="story">
                     <img src="designs/رمضان كريم الدمعان ستوري copy.png" alt="تصميم ستوري">
                     <div class="overlay">تصميم ستوري</div>
                 </div>
@@ -763,9 +759,9 @@
         </div>
 
         <div class="button-container">
-            <button id="nextButton" class="secondary">
-                <span id="nextButtonText">التالي</span>
-                <i class="fas fa-arrow-left"></i>
+            <button id="nextButton">
+                <i class="fas fa-magic"></i>
+                <span id="nextButtonText">إنشاء التهنئة</span>
             </button>
             <button id="generateButton" style="display: none;">
                 <i class="fas fa-magic"></i>
@@ -850,13 +846,11 @@
             const htmlElement = document.documentElement;
 
             // متغيرات التطبيق
-            let selectedDesign = null;
+            let selectedDesign = 'story';
             const designImages = {
-                'landscape': 'designs/رمضان كريم الدمعان copy.png',
                 'story': 'designs/رمضان كريم الدمعان ستوري copy.png'
             };
             const namePositions = {
-                'landscape': { ar: { y: 0.52, size: 0.04 }, en: { y: 0.57, size: 0.032 } },
                 'story': { ar: { y: 0.42, size: 0.045 }, en: { y: 0.46, size: 0.035 } }
             };
 
@@ -869,7 +863,7 @@
                 englishLabel: "الاسم باللغة الإنجليزية",
                 englishPlaceholder: "Enter your name here...",
                 designTitle: "اختر تصميم التهنئة",
-                nextButton: "التالي",
+                nextButton: "إنشاء التهنئة",
                 backButton: "رجوع",
                 generateButton: "إنشاء التهنئة",
                 loadingText: "جاري إنشاء التهنئة، الرجاء الانتظار...",
@@ -890,7 +884,7 @@
                 englishLabel: "Name in English",
                 englishPlaceholder: "Write your name here...",
                 designTitle: "Choose Greeting Design",
-                nextButton: "Next",
+                nextButton: "Generate Greeting",
                 backButton: "Back",
                 generateButton: "Generate Greeting",
                 loadingText: "Generating your greeting, please wait...",
@@ -975,7 +969,7 @@
                 document.getElementById('shareTitle').textContent = texts.shareTitle;
             }
 
-            // دالة للانتقال إلى مرحلة اختيار التصميم
+            // دالة للانتقال مباشرة لإنشاء التهنئة
             function goToDesignSelection() {
                 const nameAr = nameInputAr.value.trim();
                 const nameEn = nameInputEn.value.trim();
@@ -989,15 +983,9 @@
                 }
 
                 nameInputGroup.style.display = 'none';
-                designSelection.style.display = 'block';
                 nextButton.style.display = 'none';
-                generateButton.style.display = 'inline-flex';
-                backButton.style.display = 'inline-flex';
-                updateSteps(2);
-
-                setTimeout(() => {
-                    designSelection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
+                document.getElementById('stepsIndicator').style.display = 'none';
+                generateCard();
             }
 
             // دالة للرجوع إلى مرحلة إدخال الاسم
@@ -1198,6 +1186,3 @@
     </script>
 </body>
 </html>
-
-
-
