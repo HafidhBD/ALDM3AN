@@ -751,9 +751,13 @@
         <div class="design-selection" id="designSelection">
             <div class="design-title" id="designTitle">اختر تصميم التهنئة</div>
             <div class="design-options">
-                <div class="design-option selected" data-design="ar">
-                    <img src="designs/رمضان كريم الدمعان copy.png" alt="تصميم رمضان كريم">
-                    <div class="overlay">تصميم رمضان</div>
+                <div class="design-option" data-design="landscape">
+                    <img src="designs/رمضان كريم الدمعان copy.png" alt="تصميم عرضي">
+                    <div class="overlay">تصميم عرضي</div>
+                </div>
+                <div class="design-option" data-design="story">
+                    <img src="designs/رمضان كريم الدمعان ستوري copy.png" alt="تصميم ستوري">
+                    <div class="overlay">تصميم ستوري</div>
                 </div>
             </div>
         </div>
@@ -846,12 +850,14 @@
             const htmlElement = document.documentElement;
 
             // متغيرات التطبيق
-            let selectedDesign = 'ar';
+            let selectedDesign = null;
             const designImages = {
-                'ar': 'designs/رمضان كريم الدمعان copy.png'
+                'landscape': 'designs/رمضان كريم الدمعان copy.png',
+                'story': 'designs/رمضان كريم الدمعان ستوري copy.png'
             };
             const namePositions = {
-                'ar': { ar: { y: 0.52, size: 0.04 }, en: { y: 0.57, size: 0.032 } }
+                'landscape': { ar: { y: 0.52, size: 0.04 }, en: { y: 0.57, size: 0.032 } },
+                'story': { ar: { y: 0.55, size: 0.045 }, en: { y: 0.60, size: 0.035 } }
             };
 
             // نصوص للغة العربية
