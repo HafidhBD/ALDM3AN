@@ -819,6 +819,7 @@
         </div>
     </div>
 
+    <script src="font/lightfont.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // العناصر الرئيسية
@@ -907,19 +908,13 @@
             // دالة لتحميل الخط
             async function loadFont() {
                 try {
-                    if (document.fonts.check('16px "GE SS Two"')) {
-                        return true;
-                    }
-
-                    const fontBold = new FontFace('GE SS Two', 'url(font/ArbFONTS-GE_SS_Two_Bold.otf)', { weight: '700' });
-                    const fontMedium = new FontFace('GE SS Two', 'url(font/ArbFONTS-GE_SS_Two_Medium.otf)', { weight: '500' });
-                    const fontLight = new FontFace('GE SS Two', 'url(font/ArbFONTS-GE_SS_Two_Light.otf)', { weight: '300' });
-                    const fontLightAlt = new FontFace('GE SS Two Light', 'url(font/ArbFONTS-GE_SS_Two_Light.otf)', { weight: 'normal' });
-                    await Promise.all([fontBold.load(), fontMedium.load(), fontLight.load(), fontLightAlt.load()]);
-                    document.fonts.add(fontBold);
-                    document.fonts.add(fontMedium);
+                    const raw = atob(LIGHT_FONT_BASE64);
+                    const arr = new Uint8Array(raw.length);
+                    for (let i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i);
+                    const fontLight = new FontFace('GESSTwoLight', arr.buffer);
+                    await fontLight.load();
                     document.fonts.add(fontLight);
-                    document.fonts.add(fontLightAlt);
+                    await document.fonts.ready;
                     return true;
                 } catch (error) {
                     console.error('خطأ في تحميل الخط:', error);
@@ -1071,7 +1066,7 @@
                     canvas.height = img.height;
                     ctx.drawImage(img, 0, 0);
 
-                    const fontStyle = fontLoaded ? "'GE SS Two Light'" : "Arial";
+                    const fontStyle = fontLoaded ? "GESSTwoLight" : "Arial";
                     const positions = namePositions[selectedDesign];
 
                     // كتابة الاسم العربي
