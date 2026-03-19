@@ -40,6 +40,14 @@
         }
 
         @font-face {
+            font-family: 'GE SS Two Light';
+            src: url('font/ArbFONTS-GE_SS_Two_Light.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
             font-family: 'GE SS Two';
             src: url('font/ArbFONTS-GE_SS_Two_Medium.otf') format('opentype');
             font-weight: 500;
@@ -905,11 +913,13 @@
 
                     const fontBold = new FontFace('GE SS Two', 'url(font/ArbFONTS-GE_SS_Two_Bold.otf)', { weight: '700' });
                     const fontMedium = new FontFace('GE SS Two', 'url(font/ArbFONTS-GE_SS_Two_Medium.otf)', { weight: '500' });
-                    const fontLight = new FontFace('GE SS Two', 'url(font/GE_SS_Two_Light.otf)', { weight: '300' });
-                    await Promise.all([fontBold.load(), fontMedium.load(), fontLight.load()]);
+                    const fontLight = new FontFace('GE SS Two', 'url(font/ArbFONTS-GE_SS_Two_Light.otf)', { weight: '300' });
+                    const fontLightAlt = new FontFace('GE SS Two Light', 'url(font/ArbFONTS-GE_SS_Two_Light.otf)', { weight: 'normal' });
+                    await Promise.all([fontBold.load(), fontMedium.load(), fontLight.load(), fontLightAlt.load()]);
                     document.fonts.add(fontBold);
                     document.fonts.add(fontMedium);
                     document.fonts.add(fontLight);
+                    document.fonts.add(fontLightAlt);
                     return true;
                 } catch (error) {
                     console.error('خطأ في تحميل الخط:', error);
@@ -1061,14 +1071,14 @@
                     canvas.height = img.height;
                     ctx.drawImage(img, 0, 0);
 
-                    const fontStyle = fontLoaded ? "'GE SS Two'" : "Arial";
+                    const fontStyle = fontLoaded ? "'GE SS Two Light'" : "Arial";
                     const positions = namePositions[selectedDesign];
 
                     // كتابة الاسم العربي
                     if (nameAr) {
                         const arSize = Math.round(canvas.width * positions.ar.size);
                         const arY = Math.round(canvas.height * positions.ar.y);
-                        ctx.font = `300 ${arSize}px ${fontStyle}`;
+                        ctx.font = `${arSize}px ${fontStyle}`;
                         ctx.fillStyle = "#ffffff";
                         ctx.textAlign = "center";
                         ctx.textBaseline = "middle";
@@ -1079,7 +1089,7 @@
                     if (nameEn) {
                         const enSize = Math.round(canvas.width * positions.en.size);
                         const enY = Math.round(canvas.height * positions.en.y);
-                        ctx.font = `300 ${enSize}px ${fontStyle}`;
+                        ctx.font = `${enSize}px ${fontStyle}`;
                         ctx.fillStyle = "#ffffff";
                         ctx.textAlign = "center";
                         ctx.textBaseline = "middle";
