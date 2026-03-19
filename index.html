@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تهنئة رمضان | أعمال الدمعان</title>
+    <title>تهنئة عيد الفطر | أعمال الدمعان</title>
     <link href="logo.png" rel="icon" sizes="32x32" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -732,7 +732,7 @@
             <div class="step-dot" id="step2Dot"></div>
         </div>
 
-        <h2 id="mainHeading"><span class="heading-icon">🏮</span> رمضان كريم <span class="heading-icon">🏮</span></h2>
+        <h2 id="mainHeading">عيد فطر سعيد</h2>
 
         <!-- مرحلة إدخال الاسم -->
         <div class="input-group" id="nameInputGroup">
@@ -752,7 +752,7 @@
             <div class="design-title" id="designTitle">اختر تصميم التهنئة</div>
             <div class="design-options">
                 <div class="design-option selected" data-design="story">
-                    <img src="designs/رمضان كريم الدمعان ستوري copy.png" alt="تصميم ستوري">
+                    <img src="designs/eid.jpeg" alt="تصميم عيد الفطر">
                     <div class="overlay">تصميم ستوري</div>
                 </div>
             </div>
@@ -788,7 +788,7 @@
 
             <div class="download-share-container" id="downloadShareContainer">
                 <div class="action-buttons">
-                    <a download="تهنئة-رمضان-الدمعان.png" href="#" id="downloadButton">
+                    <a download="تهنئة-عيد-الفطر-الدمعان.png" href="#" id="downloadButton">
                         <i class="fas fa-download"></i>
                         <span id="downloadButtonText">تحميل التهنئة</span>
                     </a>
@@ -848,7 +848,7 @@
             // متغيرات التطبيق
             let selectedDesign = 'story';
             const designImages = {
-                'story': 'designs/رمضان كريم الدمعان ستوري copy.png'
+                'story': 'designs/eid.jpeg'
             };
             const namePositions = {
                 'story': { ar: { y: 0.42, size: 0.045 }, en: { y: 0.46, size: 0.035 } }
@@ -856,8 +856,8 @@
 
             // نصوص للغة العربية
             const arabicTexts = {
-                heading: "رمضان كريم",
-                headingIcon: "🏮",
+                heading: "عيد فطر سعيد",
+                headingIcon: "",
                 arabicLabel: "الاسم باللغة العربية",
                 arabicPlaceholder: "اكتب اسمك هنا...",
                 englishLabel: "الاسم باللغة الإنجليزية",
@@ -877,8 +877,8 @@
 
             // نصوص للغة الإنجليزية
             const englishTexts = {
-                heading: "Ramadan Kareem",
-                headingIcon: "🏮",
+                heading: "Eid Al-Fitr Mubarak",
+                headingIcon: "",
                 arabicLabel: "Name in Arabic",
                 arabicPlaceholder: "Write your name in Arabic...",
                 englishLabel: "Name in English",
@@ -953,7 +953,7 @@
 
             // دالة لتحديث النصوص حسب اللغة
             function updateTexts(texts) {
-                document.getElementById('mainHeading').innerHTML = `<span class="heading-icon">${texts.headingIcon}</span> ${texts.heading} <span class="heading-icon">${texts.headingIcon}</span>`;
+                document.getElementById('mainHeading').textContent = texts.heading;
                 document.getElementById('arabicNameLabel').textContent = texts.arabicLabel;
                 document.getElementById('nameInputAr').placeholder = texts.arabicPlaceholder;
                 document.getElementById('englishNameLabel').textContent = texts.englishLabel;
@@ -1115,8 +1115,8 @@
             function setupShareLinks(name) {
                 const isArabic = htmlElement.getAttribute('dir') === 'rtl';
                 const shareText = isArabic ?
-                    `تهنئة رمضان من ${name} عبر أعمال الدمعان! 🌙` :
-                    `Ramadan greetings from ${name} via Aldaman Works! 🌙`;
+                    `تهنئة عيد الفطر من ${name} عبر أعمال الدمعان! �` :
+                    `Eid Al-Fitr greetings from ${name} via Aldaman Works! �`;
                 const shareUrl = window.location.href;
 
                 twitterShare.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
